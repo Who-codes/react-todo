@@ -21,6 +21,10 @@ function App() {
     setIsComplete((prevState) => !prevState);
   };
 
+  const deleteItem = (id) => {
+    setList(list.filter((item) => id !== item.id));
+  };
+
   return (
     <div className="container">
       <section className="center">
@@ -35,7 +39,12 @@ function App() {
           <button className="add-btn">Add</button>
         </form>
         <div className="list-container">
-          <Lists list={list} taskDone={taskDone} isComplete={isComplete} />
+          <Lists
+            list={list}
+            taskDone={taskDone}
+            isComplete={isComplete}
+            deleteItem={deleteItem}
+          />
           {list.length > 0 && (
             <button className="clear-btn" onClick={clearList}>
               clear list

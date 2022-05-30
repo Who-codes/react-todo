@@ -3,7 +3,7 @@ import { GoTrashcan } from "react-icons/go";
 import { TiTick } from "react-icons/ti";
 import { CgUndo } from "react-icons/cg";
 
-const Lists = ({ list, taskDone, isComplete }) => {
+const Lists = ({ list, taskDone, isComplete, deleteItem }) => {
   return (
     <div className="list">
       {list.map((item) => {
@@ -21,7 +21,7 @@ const Lists = ({ list, taskDone, isComplete }) => {
               <button className="edit-btn">
                 <AiFillEdit />
               </button>
-              <button className="trash">
+              <button className="trash" onClick={() => deleteItem(id)}>
                 <GoTrashcan />
               </button>
             </div>
