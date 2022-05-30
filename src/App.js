@@ -4,6 +4,7 @@ import Lists from "./Lists";
 function App() {
   const [name, setName] = useState("");
   const [list, setList] = useState([]);
+  const [isComplete, setIsComplete] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -14,6 +15,10 @@ function App() {
 
   const clearList = () => {
     setList([]);
+  };
+
+  const taskDone = () => {
+    setIsComplete((prevState) => !prevState);
   };
 
   return (
@@ -30,7 +35,7 @@ function App() {
           <button className="add-btn">Add</button>
         </form>
         <div className="list-container">
-          <Lists list={list} />
+          <Lists list={list} taskDone={taskDone} isComplete={isComplete} />
           {list.length > 0 && (
             <button className="clear-btn" onClick={clearList}>
               clear list

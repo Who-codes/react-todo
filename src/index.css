@@ -90,9 +90,44 @@ form > * {
 }
 
 .list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   background-color: #f9f7f7;
   text-transform: capitalize;
   padding: 0.25rem;
   border-radius: 5px;
   text-indent: 10px;
+}
+
+.btn-container {
+  display: flex;
+  gap: 20px;
+}
+
+.btn-container > * {
+  background-color: transparent;
+  border: none;
+  width: 20px;
+}
+
+.trash,
+.undo {
+  color: red;
+}
+
+.tick {
+  color: green;
+}
+
+.done {
+  text-decoration: line-through;
+}
+
+.btn-container button:hover {
+  background-color: #eee;
+}
+
+.btn-container button:active {
+  opacity: 0.5;
 }
