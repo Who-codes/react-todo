@@ -1,32 +1,34 @@
 import { useState } from "react";
+import Lists from "./Lists";
 
 function App() {
+  const [name, setName] = useState("");
   const [list, setList] = useState([]);
-  const [text, setText] = useState("");
-  const [alert, setAlert] = useState(false);
-  const [isEdit, setIsEdit] = useState(false);
-  const [editId, setEditId] = useState(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newItem = { id: new Date().getTime().toString(), title: text };
-    setList([...list, newItem]);
+    const newItems = { id: new Date().getTime().toString(), title: name };
+    setList([...list, newItems]);
+    setName("");
   };
-
   return (
     <div className="container">
-      <h2>to do list</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          className="text"
-          placeholder="Eg. Submit Assignment By 11am"
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-        />
-        <button className="add-btn">{isEdit ? "Edit" : "Add"}</button>
-      </form>
-      <section className="center"></section>
+      <section className="center">
+        <h2>to do list</h2>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            className="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <button className="add-btn">Add</button>
+        </form>
+        <div className="list-container">
+          <Lists list={list} />
+          <button className="clear-btn">clear list</button>
+        </div>
+      </section>
     </div>
   );
 }

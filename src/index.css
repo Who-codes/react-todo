@@ -11,7 +11,7 @@
   display: grid;
   grid-template-columns: 100%;
   place-items: center;
-  background-color: #cbf1f5;
+  background-color: #f9f7f7;
 }
 
 h2,
@@ -22,7 +22,7 @@ h4 {
 
 .container {
   padding: 1rem;
-  background-color: #e3fdfd;
+  background-color: #dbe2ef;
   width: 80%;
   max-width: 500px;
   text-align: center;
@@ -45,14 +45,54 @@ form > * {
   text-indent: 2px;
 }
 
+.no-text {
+  outline: 2px solid red;
+}
+
 .add-btn {
   width: 20%;
   border-radius: 0 5px 5px 0;
   background-color: #f38181;
   transition: all 0.75s ease-in-out;
+  color: #fff;
 }
 
 .add-btn:hover {
-  background-color: #333;
-  color: #fff;
+  background-color: #112d4e;
+}
+
+.clear-btn {
+  background: none;
+  border: none;
+  font-size: inherit;
+  color: red;
+}
+
+.clear-btn:hover {
+  text-decoration: underline;
+}
+
+.clear-btn:active {
+  color: #6b6b6b;
+}
+
+.list-container {
+  width: 80%;
+  margin: auto;
+}
+
+.list {
+  text-align: left;
+  margin: 0.5rem 0 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.list-item {
+  background-color: #f9f7f7;
+  text-transform: capitalize;
+  padding: 0.25rem;
+  border-radius: 5px;
+  text-indent: 10px;
 }
