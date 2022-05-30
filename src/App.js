@@ -11,6 +11,11 @@ function App() {
     setList([...list, newItems]);
     setName("");
   };
+
+  const clearList = () => {
+    setList([]);
+  };
+
   return (
     <div className="container">
       <section className="center">
@@ -26,7 +31,11 @@ function App() {
         </form>
         <div className="list-container">
           <Lists list={list} />
-          <button className="clear-btn">clear list</button>
+          {list.length > 0 && (
+            <button className="clear-btn" onClick={clearList}>
+              clear list
+            </button>
+          )}
         </div>
       </section>
     </div>
