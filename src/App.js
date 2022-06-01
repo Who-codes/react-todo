@@ -5,12 +5,30 @@ function App() {
   const [name, setName] = useState("");
   const [list, setList] = useState([]);
   const [isComplete, setIsComplete] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [editId, setEditId] = useState(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newItems = { id: new Date().getTime().toString(), title: name };
-    setList([...list, newItems]);
-    setName("");
+    if (!name) {
+      //show alert
+    } else if (name && isEditing) {
+      setList(
+        list.map((item) => {
+          if (item.id === editId) {
+            return { ...item, title: name };
+          }
+          return item;
+        })
+      );
+      setName("");
+      setIsEditing(false);
+    } else {
+      const newItems = { id: new Date().getTime().toString(), title: name };
+      setList([...list, newItems]);
+      setName("");
+      setEditId(null);
+    }
   };
 
   const clearList = () => {
@@ -25,6 +43,13 @@ function App() {
     setList(list.filter((item) => id !== item.id));
   };
 
+  const editItem = (id) => {
+    let item = list.find((item) => item.id === id);
+    setIsEditing(true);
+    setEditId(id);
+    setName(item.title);
+  };
+
   return (
     <div className="container">
       <section className="center">
@@ -36,7 +61,7 @@ function App() {
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
-          <button className="add-btn">Add</button>
+          <button className="add-btn">{isEditing ? "Edit" : "Add"}</button>
         </form>
         <div className="list-container">
           <Lists
@@ -44,6 +69,7 @@ function App() {
             taskDone={taskDone}
             isComplete={isComplete}
             deleteItem={deleteItem}
+            editItem={editItem}
           />
           {list.length > 0 && (
             <button className="clear-btn" onClick={clearList}>
