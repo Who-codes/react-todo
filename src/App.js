@@ -13,7 +13,7 @@ function App() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!name) {
-      //show alert
+      showAlert(true, `can't add empty value`, "danger");
     } else if (name && isEditing) {
       setList(
         list.map((item) => {
@@ -23,6 +23,7 @@ function App() {
           return item;
         })
       );
+      showAlert(true, "Task Edited", "success");
       setName("");
       setIsEditing(false);
     } else {
@@ -30,19 +31,27 @@ function App() {
       setList([...list, newItems]);
       setName("");
       setEditId(null);
+      showAlert(true, "Task Added", "success");
     }
   };
 
   const clearList = () => {
     setList([]);
+    showAlert(true, "list cleared", "success");
   };
 
   const taskDone = () => {
     setIsComplete((prevState) => !prevState);
+    showAlert(
+      true,
+      !isComplete ? "Task completed" : "undo done",
+      !isComplete ? "success" : "danger"
+    );
   };
 
   const deleteItem = (id) => {
     setList(list.filter((item) => id !== item.id));
+    showAlert(true, "task deleted", "danger");
   };
 
   const editItem = (id) => {
@@ -52,7 +61,7 @@ function App() {
     setName(item.title);
   };
 
-  const showAlert = (status, msg, type) => {
+  const showAlert = (status = false, msg, type) => {
     setAlert({ status, msg, type });
   };
 
@@ -61,7 +70,9 @@ function App() {
       <section className="center">
         <h2>to do list</h2>
 
-        {alert.status && <Alert {...alert} />}
+        {alert.status && (
+          <Alert {...alert} list={list} removeAlert={showAlert} />
+        )}
 
         <form onSubmit={handleSubmit}>
           <input

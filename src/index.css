@@ -46,10 +46,6 @@ form > * {
   text-indent: 2px;
 }
 
-.no-text {
-  outline: 2px solid red;
-}
-
 .add-btn {
   width: 20%;
   border-radius: 0 5px 5px 0;
@@ -66,7 +62,7 @@ form > * {
   background: none;
   border: none;
   font-size: inherit;
-  color: red;
+  color: rgb(255, 134, 134);
 }
 
 .clear-btn:hover {
@@ -114,11 +110,11 @@ form > * {
 
 .trash,
 .undo {
-  color: red;
+  color: rgb(255, 74, 74);
 }
 
 .tick {
-  color: green;
+  color: rgb(59, 145, 59);
 }
 
 .done {
@@ -131,4 +127,20 @@ form > * {
 
 .btn-container button:active {
   opacity: 0.5;
+}
+
+.alert {
+  width: 80%;
+  padding: 0.15rem 1rem;
+  margin: 1rem auto;
+  border-radius: 10px;
+  text-transform: capitalize;
+}
+
+.alert-danger {
+  background-color: rgb(255, 134, 134);
+}
+
+.alert-success {
+  background-color: rgb(90, 199, 90);
 }
