@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Alert from "./Alert";
 import Lists from "./Lists";
 
 function App() {
@@ -7,6 +8,7 @@ function App() {
   const [isComplete, setIsComplete] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [editId, setEditId] = useState(null);
+  const [alert, setAlert] = useState({ status: false, msg: "", type: "" });
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -50,10 +52,17 @@ function App() {
     setName(item.title);
   };
 
+  const showAlert = (status, msg, type) => {
+    setAlert({ status, msg, type });
+  };
+
   return (
     <div className="container">
       <section className="center">
         <h2>to do list</h2>
+
+        {alert.status && <Alert {...alert} />}
+
         <form onSubmit={handleSubmit}>
           <input
             type="text"
